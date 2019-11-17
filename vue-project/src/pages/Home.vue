@@ -22,7 +22,7 @@
         </div>
         <div class="ag-theme-balham ag-table-styles">
             <ag-grid-vue
-                class="ag-theme-balham ag-table-styles"
+                class="ag-theme-balham"
                 style="width: 1000px; height: 500px;"
                 :columnDefs="columnDefs"
                 :rowData="this.rowData"
@@ -62,7 +62,8 @@ export default Vue.extend({
                 onGridReady: () => { // part of API: grid will automaticall call this when ready
                     console.log('Grid ready')
                     console.log(this.gridOptions.api.sizeColumnsToFit()) // is this the right call?
-                }
+                },
+                headerHeight: 48
             },
             modules: AllCommunityModules
         }

@@ -44,6 +44,14 @@ body // the parent of everything
 .ag-table-styles
     font-size: 10px !important; // need ! otherwise balham theme takes precedence
 
+.ag-header-cell-label 
+    font-size: 10px !important; 
+    white-space: pre !important;
+
+.ag-header-cell-label .ag-header-cell-text // why does this work??
+  white-space: normal !important;
+
+
 @keyframes moveInLeft 
     0% 
         opacity: 0;
