@@ -1,0 +1,92 @@
+
+<template>
+    <div>
+        <header class="header">
+            <div class="heading-primary">
+                <span class="heading-primary-main">{{this.header}}</span>
+                <span class="heading-primary-sub">{{this.message}}</span>
+            </div>
+        </header>
+        <div class="row">
+            <div class="col-4 input-one">
+                <q-select
+                    outlined
+                    dense
+                    options-dense
+                    v-model="model"
+                    :options="this.options"
+                    label="Standard"
+                >
+                </q-select>
+            </div>
+        </div>
+        <div class="ag-theme-balham ag-table-styles">
+            <ag-grid-vue
+                class="ag-theme-balham ag-table-styles"
+                style="width: 1000px; height: 500px;"
+                :columnDefs="columnDefs"
+                :rowData="this.rowData"
+                :modules="modules"
+                :gridOptions="this.gridOptions">
+            </ag-grid-vue>
+        </div>
+    </div>
+</template>
+
+<style lang="scss">
+    @import "../../node_modules/@ag-grid-community/core/dist/styles/ag-grid.css";
+    @import "../../node_modules/@ag-grid-community/core/dist/styles/ag-theme-balham.css";
+</style>
+
+<script lang="ts">
+/* eslint-disable */
+import Vue from 'vue'
+import button from '../components/button.vue'
+import { AgGridVue } from '@ag-grid-community/vue';
+import {AllCommunityModules} from "@ag-grid-community/all-modules";
+
+export default Vue.extend({
+    data () {
+        return {
+            message: 'Please submit a request here',
+            header: 'TRAVEL TRACKER',
+            model: null,
+            options: [1,2,3,4,5,6,7],
+            columnDefs: null,
+            rowData: [
+                {make: 'Toyota', model: 'Celica', price: 35000},
+                {make: 'Ford', model: 'Mondeo', price: 32000},
+                {make: 'Porsche', model: 'Boxter', price: 72000}
+            ],
+            gridOptions: {
+                onGridReady: () => { // part of API: grid will automaticall call this when ready
+                    console.log('Grid ready')
+                    console.log(this.gridOptions.api.sizeColumnsToFit()) // is this the right call?
+                }
+            },
+            modules: AllCommunityModules
+        }
+    },
+
+    components: {
+        button,
+        AgGridVue
+    },
+    beforeMount() {
+        this.columnDefs = [
+            {headerName: '!', field: 'make'},
+            {headerName: 'Model A and Model B', field: 'model'},
+            {headerName: 'Price Volume IIIIIIIIIIIII', field: 'price'},
+            {headerName: 'Maketh Naketh Shaketh AAAAAAAAAAA', field: 'make'},
+            {headerName: 'Model B Trench Gun XXXXXXXXXX', field: 'model'},
+            {headerName: 'Price Is Right', field: 'price'}
+        ];
+
+        this.rowData = [
+            {make: 'Toyota', model: 'Celica', price: 35000},
+            {make: 'Ford', model: 'Mondeo', price: 32000},
+            {make: 'Porsche', model: 'Boxter', price: 72000}
+        ];
+    }
+})
+</script>

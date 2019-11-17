@@ -1,0 +1,64 @@
+// app global css in Sass form
+
+*
+    // margin: 0px;
+    // padding: 0px;
+    box-sizing: border-box; // don't let padding be additional to width
+
+body // the parent of everything
+    font-family: "Arial";
+    font-weight: 400;
+    padding: 30px; // padding for entire body
+
+.header 
+    // height: 10vh; // viewport height! useful when resizing screen
+    // background-size: cover; // always fit the viewport
+    // background-color: rgba(56, 218, 137, 0.5);
+    // background-position: top; // top is locked in 
+    // color: red;
+
+.heading-primary
+    text-transform: uppercase;
+    // position: relative; // relative to parent; absolute to body
+    // top: 30px;          // enabling this will move header downwards thus overlapping with select element underneath 
+    // left: 30px;
+
+.heading-primary-main
+    display: block;     // all in single line!
+    font-size: 30px;
+    letter-spacing: 10px;
+    animation-name: moveInLeft;
+    animation-duration: 1s;
+
+.heading-primary-sub
+    display: block; 
+    animation-name: moveInRight; // enter animation name & duration
+    animation-duration: 1s;
+
+.input-one
+    padding-top: 10px;
+
+.table
+    width: 1000px;
+
+.ag-table-styles
+    font-size: 10px !important; // need ! otherwise balham theme takes precedence
+
+@keyframes moveInLeft 
+    0% 
+        opacity: 0;
+        transform: translateX(-100px);
+    90%
+        opacity: 0.95;
+        transform: translateX(10px);
+    100%
+        opacity: 1;
+        transform: translateX(0px);
+
+@keyframes moveInRight 
+    0% 
+        opacity: 0;
+        transform: translateX(100px);
+    100%
+        opacity: 1
+        transform: translateX(0px);
