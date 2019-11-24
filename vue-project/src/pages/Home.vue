@@ -1,35 +1,55 @@
 
 <template>
     <div>
-        <header class="header">
-            <div class="heading-primary">
-                <span class="heading-primary-main">{{this.header}}</span>
-                <span class="heading-primary-sub">{{this.message}}</span>
-            </div>
-        </header>
-        <div class="row">
-            <div class="col-4 input-one">
-                <q-select
-                    outlined
-                    dense
-                    options-dense
-                    v-model="model"
-                    :options="this.options"
-                    label="Standard"
-                >
-                </q-select>
-            </div>
+    <div class="row">
+        <div class="col-3">
+            <q-card class="info-card">
+                <q-card-section>
+                    INFO
+                </q-card-section>
+            </q-card>
         </div>
-        <div class="ag-theme-balham ag-table-styles">
-            <ag-grid-vue
-                class="ag-theme-balham"
-                style="width: 1000px; height: 500px;"
-                :columnDefs="columnDefs"
-                :rowData="this.rowData"
-                :modules="modules"
-                :gridOptions="this.gridOptions">
-            </ag-grid-vue>
+        <div class="col-6">
+            <header class="header">
+                <div class="heading-primary">
+                    <span class="heading-primary-main">{{this.header}}</span>
+                    <span class="heading-primary-sub">{{this.message}}</span>
+                </div>
+            </header>
+        <div>
+            <q-card class="my-card">
+                <q-card-section>
+                    <div class="input-one">
+                        <q-select
+                            outlined
+                            dense
+                            options-dense
+                            v-model="model"
+                            :options="this.options"
+                            label="Standard"
+                        >
+                        </q-select>
+                    </div>
+                </q-card-section>
+                <q-card-section>
+                    <q-timeline>
+                        <div v-for="fruit in fruits" :key="fruit">
+                            <q-timeline-entry
+                                v-for="fruit in fruits" :key="fruit"
+                                :title="fruit"
+                            />
+                        </div>
+                    </q-timeline>
+                </q-card-section>
+                <ul>
+                    <li v-for="fruit in fruits" :key="fruit">
+                        {{ fruit }}
+                    </li>
+                </ul>
+            </q-card>
         </div>
+        </div>
+    </div>
     </div>
 </template>
 
@@ -51,6 +71,8 @@ export default Vue.extend({
             message: 'Please submit a request here',
             header: 'TRAVEL TRACKER',
             model: null,
+            dummyData: ["one", "two", "three"],
+            fruits: ['apple', 'bananas'],
             options: [1,2,3,4,5,6,7],
             columnDefs: null,
             rowData: [
